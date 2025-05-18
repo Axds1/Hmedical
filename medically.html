@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="keywords" content="أمراض, صحة, طب, معلومات طبية, أمراض مزمنة, أمراض معدية, الوقاية من الأمراض, أعراض المرض, علاج, تشخيص, نصائح طبية, فيروسات, بكتيريا, أمراض الجهاز التنفسي, أمراض القلب, أمراض السكري, ضغط الدم, الطب الوقائي, معلومات صحية, موسوعة طبية">
+  <title>موقع الأمراض</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      font-family: 'Cairo', sans-serif;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      background: #000;
+      color: #fff;
+      overflow-x: hidden;
+      position: relative;
+    }
+    .lava-background {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: -1;
+      background: radial-gradient(circle at 50% 50%, #ff5500, #000);
+      animation: lavaFlow 15s linear infinite reverse;
+    }
+    @keyframes lavaFlow {
+      0% { background-position: 0% 0%; }
+      100% { background-position: 100% 100%; }
+    }
+    .greeting {
+      font-size: 24px;
+      padding: 20px;
+      text-align: center;
+    }
+    .content {
+      padding: 20px;
+      text-align: center;
+    }
+    .back-btn {
+      display: inline-block;
+      margin: 20px auto;
+      padding: 10px 20px;
+      background: #ff5500;
+      color: white;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    .clock {
+      text-align: center;
+      font-size: 20px;
+      margin-top: 10px;
+    }
+    @media (max-width: 600px) {
+      .greeting, .content {
+        font-size: 18px;
+      }
+      .back-btn {
+        font-size: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="lava-background"></div>
+  <div class="greeting" id="greeting"></div>
+  <div class="content">
+    <h1>مرحبًا بك في موقع الأمراض</h1>
+    <p>هنا تجد معلومات موثوقة عن مختلف الأمراض وأعراضها وطرق علاجها.</p>
+    <button class="back-btn" onclick="history.back()">رجوع</button>
+  </div>
+  <div class="clock" id="clock"></div>
+
+  <script>
+    window.onload = function() {
+      alert("مرحبًا بك في موقع الأمراض - موسوعتك الصحية الشاملة!");
+      updateClockAndGreeting();
+      setInterval(updateClockAndGreeting, 1000);
+    };
+
+    function updateClockAndGreeting() {
+      const now = new Date();
+      const hours = now.getHours();
+      const minutes = String(now.getMinutes()).padStart(2, "0");
+      const seconds = String(now.getSeconds()).padStart(2, "0");
+      document.getElementById("clock").textContent = `الساعة الآن: ${hours}:${minutes}:${seconds}`;
+
+      let greeting = "";
+      if (hours >= 5 && hours < 12) {
+        greeting = "صباح الخير، يعطيك العافية!";
+      } else if (hours >= 12 && hours < 18) {
+        greeting = "مرحباً، خطاك السوء!";
+      } else if (hours >= 18 && hours < 22) {
+        greeting = "مساء النور، سلامتك!";
+      } else {
+        greeting = "تصبح على خير، الله يقويك!";
+      }
+      document.getElementById("greeting").textContent = greeting;
+    }
+  </script>
+</body>
+</html>

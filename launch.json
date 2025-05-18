@@ -1,0 +1,12 @@
+{
+    
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "chrome",
+            "request": "launch",
+            "name": "Open Hmedical.html",
+            "file": "c:\\Users\\Admin\\Desktop\\2025 ✨\\متعلقات ثانوي\\ثاني ثانوي\\the best computer projectttt!!!!!!!!!!!!!!\\Hmedical.html"
+        }
+    ]
+}

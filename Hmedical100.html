@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <title>Hmedical</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      height: 100%;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(-45deg, #ffb6b9, #ffd3b6, #a7d8f2, #d4a5a5);
+      background-size: 400% 400%;
+      animation: moveLava 15s ease infinite;
+    }
+
+    @keyframes moveLava {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .main-page {
+      text-align: center;
+      position: relative;
+      top: 20%;
+      z-index: 2;
+    }
+
+    .logo {
+      font-size: 60px;
+      font-weight: bold;
+      display: flex;
+      justify-content: center;
+    }
+
+    .lava-h {
+      background: linear-gradient(270deg, #ff6ec4, #ffb86c, #52e5e7, #7ef9ff);
+      background-size: 400% 400%;
+      animation: shimmer 6s ease infinite;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    @keyframes shimmer {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .white-text {
+      color: white;
+    }
+
+    .greeting-box, .clock {
+      text-align: center;
+      font-size: 22px;
+      color: white;
+      margin-top: 10px;
+    }
+
+    .search-form {
+      margin-top: 30px;
+    }
+
+    .search-form input {
+      padding: 12px;
+      font-size: 18px;
+      border-radius: 8px;
+      border: none;
+      width: 250px;
+    }
+
+    .search-form button {
+      padding: 12px 20px;
+      font-size: 18px;
+      background-color: white;
+      color: black;
+      border: none;
+      border-radius: 8px;
+      margin-right: 10px;
+      cursor: pointer;
+    }
+
+    .back-btn {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      font-size: 18px;
+      padding: 10px 15px;
+      background-color: white;
+      color: black;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      z-index: 10;
+      box-shadow: 0 0 5px rgba(0,0,0,0.3);
+    }
+  </style>
+</head>
+<body>
+  <div class="greeting-box" id="greeting"></div>
+  <div class="clock" id="clock"></div>
+  <main class="main-page">
+    <h1 class="logo">
+      <span class="lava-h">H</span><span class="white-text">medical</span>
+    </h1>
+
+    <form onsubmit="handleSearch(event)" class="search-form">
+      <input type="text" id="searchInput" placeholder="اكتب اسم المرض..." required>
+      <button type="submit">🔍 أبحث</button>
+    </form>
+  </main>
+
+  <script>
+    function updateClockAndGreeting() {
+      const now = new Date();
+      const hours = now.getHours();
+      const minutes = String(now.getMinutes()).padStart(2, "0");
+      const seconds = String(now.getSeconds()).padStart(2, "0");
+
+      document.getElementById("clock").textContent = `الساعة الآن: ${hours}:${minutes}:${seconds}`;
+
+      let greeting = "";
+      if (hours >= 5 && hours < 12) greeting = "صباح الخير، يعطيك العافية!";
+      else if (hours >= 12 && hours < 18) greeting = "مرحباً، خطاك السوء!";
+      else if (hours >= 18 && hours < 22) greeting = "مساء النور، سلامتك!";
+      else greeting = "تصبح على خير، الله يقويك!";
+      document.getElementById("greeting").textContent = greeting;
+    }
+
+    function handleSearch(event) {
+      event.preventDefault();
+      const query = document.getElementById("searchInput").value.trim();
+
+      if (query.includes("ضغط") || query.includes("قلب") || query.includes("شرايين")|| query.includes("جهاز دوراني")) {
+        window.location.href = "circulatorysystem.html";
+      } else if (query.includes("معدة") || query.includes("قولون") || query.includes("هضم")) {
+        window.location.href = "digestivestystem.html";
+      } else {
+        alert("لم يتم العثور على المرض، جرّب كتابة كلمة مختلفة.");
+      }
+    }
+    setInterval(updateClockAndGreeting, 1000);
+    updateClockAndGreeting();
+  </script>
+
+</body>
+</html>
